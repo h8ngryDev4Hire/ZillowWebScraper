@@ -1,6 +1,7 @@
 import re
 import requests
 from bs4 import BeautifulSoup
+from urllib.parse import urlencode
 import json
 import csv
 
@@ -8,34 +9,31 @@ class Zillow():
 
     # Grabs the base params required by zillow.com for querying
     # The site for data
-    def getParams(self, north=-115.56063652038574, east=-110.18832206726074, south=31.701736103303432, west=35.29649332118693):
+    def getParams(self, 
+    userSearchTerm="Los Angeles, CA", 
+    north=34.46664636821635, 
+    east=-117.74019319335937, 
+    south=33.5731428127787, 
+    west=-119.08327180664062):
         params = {
             "searchQueryState": {
-                "pagination": {},
-                "usersSearchTerm": "Scottsdale, AZ",
+                "usersSearchTerm": userSearchTerm,
                 "mapBounds": {
-                    "north": north,
+                    "west": west,
                     "east": east,
                     "south": south,
-                    "west": west
+                    "north": north
                 },
-                "mapZoom": 14,
                 "isMapVisible": True,
                 "filterState": {
-                "ah": {
-                    "value": True
-                },
-                "sort": {
-                    "value": "globalrelevanceex"
-                }
-                },
-                    "isListVisible": True,
-                    "regionSelection": [
-                    {
-                        "regionId": 38590,
-                        "regionType": 6
+                    "sort": {
+                        "value": "days"
+                    },
+                    "ah": {
+                        "value": True
                     }
-                ]
+                },
+                "isListVisible": True
             }
         }
 
@@ -108,7 +106,9 @@ class Zillow():
     # The Site so u can just query the HTML file.
     def downloadHTML(self, url, params):
         headers = self.getHeaders()
-        results = requests.get(url, headers=headers, params=params) 
+        encoded_params = urlencode(params)
+        full_address = url + "?" + encoded_params
+        results = requests.get(full_address, headers=headers) 
         status = str(results.status_code)
 
         if str(200) not in status:
@@ -124,8 +124,12 @@ class Zillow():
 
     # Makes request to zillow.com for site data
     def fetch(self, url, headers, params):
+
         print("Fetching site data...")
-        response = requests.get(url, headers=headers, params=params)
+
+        encoded_params = urlencode(params)
+        full_address = url + '?' + encoded_params
+        response = requests.get(full_address, headers=headers)
         status = str(response.status_code)
         if str(200) not in status:
             print("Something went wrong. HTTP status code: " + status)
