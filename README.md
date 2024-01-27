@@ -156,7 +156,7 @@ pip install jupyter
 
 
 ## Contributing
-- This is a personal project I made. Feel free to use it in your code projects just 
+- This is a personal project I made. Feel free to use it in your code projects!
 
 ## License
 - This project is licensed under the GPL3 License. Check [LICENSE.md](https://github.com/h8ngryDev4Hire/ZillowWebScraper/blob/main/LICENSE.md) for more information. 
