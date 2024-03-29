@@ -1,7 +1,8 @@
 # The Zillow Web-Scraper
 
-## Description
  Basic Webscraper specialized for Zillow (http://www.zillow.com) that grabs important data from home listings such as prices, addresses, etc.
+
+![Demo](./assets/Zillow-Web-Scraper-Demo-Short.mp4)
 
 ## Table of Contents
 - [Features](#features)
@@ -156,7 +157,7 @@ pip install jupyter
 
 
 ## Contributing
-- This is a personal project I made. Feel free to use it in your code projects just 
+- This is a personal project I made. Feel free to use it in your code projects. 
 
 ## License
 - This project is licensed under the GPL3 License. Check [LICENSE.md](https://github.com/h8ngryDev4Hire/ZillowWebScraper/blob/main/LICENSE.md) for more information. 

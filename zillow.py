@@ -226,7 +226,7 @@ class Zillow():
 
 
     # Preps data to be exported to CSV
-    def send2csv(self, data, filename='housingdata.csv', all=True):
+    def send2csv(self, data, filename='housingdata.csv'):
         KEYS = []
         VALUES = []
 
